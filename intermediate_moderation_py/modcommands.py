@@ -111,6 +111,12 @@ class ModCommandsCog(commands.Cog, name="Moderation Commands"):
         log_chnl = get(ctx.message.guild.channels, name=self.log_chnl, type=discord.ChannelType.text)
         await log_chnl.send(embed=embed)
 
+    #Purge
+    @commands.command()
+    @commands.has_role('Moderator')
+    async def purge(self, ctx, num):
+        await ctx.message.channel.purge(limit=int(num))
+
 
 def setup(bot):
     bot.add_cog(ModCommandsCog(bot))
